@@ -61,6 +61,7 @@ most common classification settings used in the AMPEL project.</p>
   <span class="va">x</span>,
   <span class="va">y</span>,
   probability <span class="op">=</span> <span class="cn">TRUE</span>,
+  classification <span class="op">=</span> <span class="op">!</span><span class="va">probability</span>,
   min.node.size <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="va">probability</span><span class="op">)</span> <span class="fl">10</span> <span class="kw">else</span> <span class="fl">1</span>,
   replace <span class="op">=</span> <span class="cn">FALSE</span>,
   <span class="va">...</span>
@@ -78,6 +79,9 @@ details.</p></dd>
 <dt>probability</dt>
 <dd><p><code>logical(1)</code>, grow probability trees, see <code>ranger()</code>
 for details.</p></dd>
+<dt>classification</dt>
+<dd><p><code>logical(1)</code>, run classification even if <code>y</code> is
+<code>numeric</code>, see <code>ranger()</code> for details.</p></dd>
 <dt>min.node.size, </dt>
 <dd><p>same as in <code>ranger()</code></p></dd>
 <dt>replace, </dt>
