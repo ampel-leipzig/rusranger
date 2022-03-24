@@ -8,6 +8,7 @@ rusranger(
   x,
   y,
   probability = TRUE,
+  classification = !probability,
   min.node.size = if (probability) 10 else 1,
   replace = FALSE,
   ...
@@ -22,6 +23,9 @@ details.}
 
 \item{probability}{\code{logical(1)}, grow probability trees, see \code{\link[=ranger]{ranger()}}
 for details.}
+
+\item{classification}{\code{logical(1)}, run classification even if \code{y} is
+\code{numeric}, see \code{\link[=ranger]{ranger()}} for details.}
 
 \item{min.node.size, }{same as in \code{\link[=ranger]{ranger()}}}
 

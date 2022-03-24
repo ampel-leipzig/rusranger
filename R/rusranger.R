@@ -14,6 +14,8 @@
 #' details.
 #' @param probability `logical(1)`, grow probability trees, see [`ranger()`]
 #' for details.
+#' @param classification `logical(1)`, run classification even if `y` is
+#' `numeric`, see [`ranger()`] for details.
 #' @param min.node.size, same as in [`ranger()`]
 #' @param replace, subsampling without (default, `replace = FALSE`) or with
 #' resampling, see [`ranger()`] for details.
@@ -32,12 +34,13 @@
 #'
 #' @import ranger
 #' @export
-rusranger <- function(x, y, probability = TRUE,
+rusranger <- function(x, y, probability = TRUE, classification = !probability,
                       min.node.size = if (probability) 10 else 1,
                       replace = FALSE, ...) {
     ranger(
-        x = as.data.frame(x), y = as.factor(y),
+        x = as.data.frame(x), y = y,
         probability = probability,
+        classification = classification,
         min.node.size = min.node.size,
         ## RUS
         ### subsample (replace == FALSE) vs bootstrap (replace == TRUE)
