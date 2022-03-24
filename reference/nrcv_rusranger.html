@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rusranger</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2</span>
       </span>
     </div>
 
@@ -155,11 +155,11 @@ with the best hyperparameters which results in a new subsampling.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  56  57  59  64  66  68  72  78  79  80  86  87  93  95 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]$prediction</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.0000000 0.0000000 0.0000000 0.0030000 0.0000000 0.0000000 0.9722500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.1519643 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.0000000 0.0000000 0.0000000 0.0025000 0.0000000 0.0000000 0.9737500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.1420357 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [15] 0.0000000 0.0000000 0.0000000 0.9913333 1.0000000 1.0000000 1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.0320000 1.0000000 0.9722500 1.0000000 1.0000000 0.9722500 0.9722500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 1.0000000 0.5733143 1.0000000 1.0000000 0.9913333 1.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.0160000 1.0000000 0.9737500 1.0000000 1.0000000 0.9737500 0.9737500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 1.0000000 0.5730190 1.0000000 1.0000000 0.9913333 1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]$truth</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span>
@@ -196,7 +196,7 @@ with the best hyperparameters which results in a new subsampling.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ranger(x = as.data.frame(x), y = y, probability = probability,      classification = classification, min.node.size = min.node.size,      replace = replace, case.weights = .caseweights(y, replace = replace),      sample.fraction = .samplefraction(y), ..., keep.inbag = FALSE) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type:                             Probability estimation </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of trees:                  500 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of trees:                  1000 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample size:                      66 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of independent variables:  4 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mtry:                             2 </span>
@@ -222,12 +222,12 @@ with the best hyperparameters which results in a new subsampling.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  60  61  63  67  69  74  75  81  83  88  91  94  99 100 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]$prediction</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.031733333 0.496733333 0.037866667 0.005485714 0.000000000 0.067566667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] 0.022733333 0.002666667 0.005907937 0.001333333 0.770196825 0.004352381</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] 0.037866667 0.000000000 0.007466667 0.031733333 0.022733333 0.990133333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] 1.000000000 0.985428571 1.000000000 0.990133333 0.991428571 0.981584127</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] 1.000000000 0.916696825 0.982228571 1.000000000 1.000000000 0.981584127</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] 0.991428571 0.982228571 0.990133333 0.946584127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.045900000 0.494400000 0.056433333 0.007100794 0.000250000 0.090016667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] 0.026650000 0.001555556 0.007411905 0.003250000 0.776325397 0.004017460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] 0.056433333 0.000250000 0.013533333 0.045900000 0.026400000 0.988466667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] 1.000000000 0.987714286 1.000000000 0.988466667 0.992714286 0.983325397</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] 1.000000000 0.919846032 0.981514286 1.000000000 1.000000000 0.983325397</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] 0.992714286 0.981514286 0.988466667 0.951325397</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]$truth</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span>
@@ -237,13 +237,13 @@ with the best hyperparameters which results in a new subsampling.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]$selectedparams</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mtry num.trees</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2       500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2      1000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]$gridsearch</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mtry num.trees         Min          Q1      Median          Q3         Max</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    2       500 0.033333333 0.033333333 0.033333333 0.033333333 0.033333333</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    3       500 0.020661157 0.020661157 0.020661157 0.020661157 0.020661157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2      1000 0.033057851 0.033057851 0.033057851 0.033057851 0.033057851</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2      1000 0.057851240 0.057851240 0.057851240 0.057851240 0.057851240</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4    3      1000 0.008547009 0.008547009 0.008547009 0.008547009 0.008547009</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]$nouterfolds</span>
@@ -264,7 +264,7 @@ with the best hyperparameters which results in a new subsampling.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ranger(x = as.data.frame(x), y = y, probability = probability,      classification = classification, min.node.size = min.node.size,      replace = replace, case.weights = .caseweights(y, replace = replace),      sample.fraction = .samplefraction(y), ..., keep.inbag = FALSE) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type:                             Probability estimation </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of trees:                  1000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of trees:                  500 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample size:                      68 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of independent variables:  4 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mtry:                             2 </span>
@@ -290,29 +290,29 @@ with the best hyperparameters which results in a new subsampling.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  73  76  77  82  84  85  89  90  92  96  97  98 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]$prediction</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.22875000 0.25348333 0.02375000 0.02375000 0.00000000 0.02675000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] 0.00000000 0.00000000 0.02375000 0.02675000 0.75568333 0.05503333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] 0.02675000 0.00000000 0.00000000 0.00000000 0.97100000 0.94823929</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] 0.22575119 1.00000000 1.00000000 0.99220000 0.55785000 1.00000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] 0.30265000 0.45092262 0.53385000 1.00000000 0.99140000 1.00000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] 0.89323333 1.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.22633333 0.24873333 0.02433333 0.02433333 0.00000000 0.02633333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] 0.00000000 0.00000000 0.02433333 0.02633333 0.72173333 0.05220000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] 0.02633333 0.00000000 0.00000000 0.00000000 0.97300000 0.95382857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] 0.24197143 1.00000000 1.00000000 0.99100000 0.52140000 1.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] 0.31340000 0.45557143 0.50225714 1.00000000 0.99040000 1.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] 0.88473333 1.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]$truth</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]$performance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02734375</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0234375</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]$selectedparams</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mtry num.trees</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2      1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2       500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]$gridsearch</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   mtry num.trees         Min          Q1      Median          Q3         Max</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2       500 0.000000000 0.000000000 0.000000000 0.000000000 0.000000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    3       500 0.000000000 0.000000000 0.000000000 0.000000000 0.000000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2      1000 0.008264463 0.008264463 0.008264463 0.008264463 0.008264463</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    3      1000 0.000000000 0.000000000 0.000000000 0.000000000 0.000000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   mtry num.trees Min Q1 Median Q3 Max</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2       500   0  0      0  0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    3       500   0  0      0  0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2      1000   0  0      0  0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    3      1000   0  0      0  0   0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]$nouterfolds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
