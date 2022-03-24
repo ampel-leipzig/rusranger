@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>/404.html</loc>
+  </url>
+  <url>
+    <loc>/authors.html</loc>
+  </url>
+  <url>
+    <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/news/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/cv_rusranger.html</loc>
+  </url>
+  <url>
+    <loc>/reference/gs_rusranger.html</loc>
+  </url>
+  <url>
+    <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/nrcv_rusranger.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rcv_rusranger.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rusranger-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rusranger.html</loc>
+  </url>
+</urlset>
