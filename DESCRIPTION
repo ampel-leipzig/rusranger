@@ -1,0 +1,48 @@
+Package: rusranger
+Title:
+    Modified ranger implementation to support random-under-sampling
+Version: 0.0.1
+Date: 2022-03-24
+Description:
+    The random forest implementation of the ranger package is modified to
+    support random-under-sampling. Additional helper functions for
+    (nested)-cross-validation and diagnositc plots are also provided.
+Authors@R:
+    c(
+        person(
+            given = "Sebastian", family = "Gibb",
+            email = "mail@sebastiangibb.de",
+            role = c("aut", "cre"),
+		    comment = c(ORCID = "0000-0001-7406-4443")
+        ),
+        person(
+            given = "Paul", family = "Ahrens",
+            email = "paul.ahrens@medizin.uni-leipzig.de",
+            role = c("aut")
+        ),
+        person(
+            given = "Daniel", family = "Steinbach",
+            email = "daniel.steinbach@medizin.uni-leipzig.de",
+            role = c("aut")
+        )
+    )
+Maintainer: Sebastian Gibb <mail@sebastiangibb.de>
+Depends:
+    R (>= 4.1),
+    ranger,
+    ROCR,
+    future,
+    future.apply
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+License: GPL (>= 3)
+LazyData: yes
+URL: https://github.com/ampel-leipzig/rusranger
+BugReports: https://github.com/ampel-leipzig/rusranger/issues/
+Roxygen: list(markdown=TRUE)
+RoxygenNote: 7.1.2
+VignetteBuilder: knitr
+Encoding: UTF-8
+Config/testthat/edition: 3

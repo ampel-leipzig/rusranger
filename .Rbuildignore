@@ -1,0 +1,9 @@
+^\.git$
+^\.github$
+^\.editorconfig$
+^\.gitignore$
+docs
+playground
+^LICENSE\.md$
+^README\.md$
+^README\.Rmd$
