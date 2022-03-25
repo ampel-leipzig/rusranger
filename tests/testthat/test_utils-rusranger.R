@@ -23,6 +23,12 @@ test_that(".caseweights", {
         .caseweights(cl, replace = TRUE),
         setNames(rep(c(0.5, 0.25), c(2, 4)), cl)
     )
+    ## fix error if classes are numerics other as 1:2
+    cl <- rep(0:1, c(2, 4))
+    expect_equal(
+        unname(.caseweights(cl, replace = FALSE)),
+        unname(.caseweights(cl + 1, replace = FALSE)),
+    )
 })
 
 test_that(".samplefraction", {

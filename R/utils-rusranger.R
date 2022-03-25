@@ -28,6 +28,7 @@
 #' @return `double(length(y))` with case weights
 #' @noRd
 .caseweights <- function(y, replace = FALSE) {
+    y <- as.factor(y)
     if (isTRUE(replace))
         ## these case weights work just for replace = TRUE (=> bootstrap)
         c(1 / table(y))[y]

@@ -1,7 +1,7 @@
 Package: rusranger
 Title:
     Modified ranger implementation to support random-under-sampling
-Version: 0.0.1
+Version: 0.0.2
 Date: 2022-03-24
 Description:
     The random forest implementation of the ranger package is modified to
