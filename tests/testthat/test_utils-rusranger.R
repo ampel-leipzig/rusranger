@@ -27,8 +27,13 @@ test_that(".caseweights", {
     cl <- rep(0:1, c(2, 4))
     expect_equal(
         unname(.caseweights(cl, replace = FALSE)),
-        unname(.caseweights(cl + 1, replace = FALSE)),
+        unname(.caseweights(cl + 1, replace = FALSE))
     )
+})
+
+test_that(".nmin", {
+    expect_equal(.nmin(rep(1:2, c(2, 4))), 2)
+    expect_equal(.nmin(rep(1:2, c(7, 4))), 4)
 })
 
 test_that(".samplefraction", {

@@ -1,13 +1,13 @@
 #' Grid Search
 #'
-#' Grid search to optimise hyperparameters for `rusranger()`
+#' Grid search to optimise hyperparameters for `FUN`
 #'
-#' @inheritParams rusranger
-#' @inheritParams rcv_rusranger
+#' @inheritParams cv
+#' @inheritParams rcv
 #' @param searchspace `data.frame`, hyperparameters to tune. Column names have
-#' to match the argument names of [`ranger()`]/[`rusranger()`].
-#' @param \ldots further arguments passed to [`rcv_rusranger()`].
-#' @return `data.frame` with tested hyperparameters and AUCs
+#' to match the argument names of `FUN`.
+#' @param \ldots further arguments passed to `FUN`
+#' @return `data.frame` with tested hyperparameters and metric
 #' @export
 #' @examples
 #' iris <- subset(iris, Species != "setosa")
@@ -21,21 +21,25 @@
 #'     iris[-5], as.numeric(iris$Species == "versicolor"),
 #'     searchspace = searchspace, nfolds = 3, nrepcv = 1
 #' )
-gs_rusranger <- function(x, y, searchspace, nfolds = 5, nrepcv = 2, ...) {
-    auc <- future.apply::future_lapply(
+gridsearch <- function(x, y, searchspace, FUN, nfolds = 5, nrepcv = 2, ...) {
+    r <- future.apply::future_lapply(
         seq_len(nrow(searchspace)),
         function(i) {
             do.call(
-                rcv_rusranger,
+                rcv,
                 c(
-                    list(x = x, y = y, nfolds = nfolds, nrepcv = nrepcv),
-                    list(...), searchspace[i, ]
+                    list(
+                        x = x, y = y, FUN = FUN,
+                        nfolds = nfolds, nrepcv = nrepcv
+                    ),
+                    list(...),
+                    searchspace[i, ]
                 )
             )
         },
         future.seed = TRUE
     )
-    cbind.data.frame(searchspace, do.call(rbind, auc))
+    cbind.data.frame(searchspace, do.call(rbind, r))
 }
 
 #' Nested Cross Validation for Hyperparameter Search
@@ -44,21 +48,20 @@ gs_rusranger <- function(x, y, searchspace, nfolds = 5, nrepcv = 2, ...) {
 #'
 #' @note
 #' The reported performance could slightly differ from the median performance
-#' in the reported gridsearch. After the gridsearch `rusranger` is trained again
+#' in the reported gridsearch. After the gridsearch `FUN` is trained again
 #' with the best hyperparameters which results in a new subsampling.
 #'
-#' @inheritParams gs_rusranger
+#' @inheritParams cv
+#' @inheritParams rcv
+#' @inheritParams gridsearch
 #' @param nouterfolds `integer(1)`, number of outer cross validation folds.
 #' @param ninnerfolds `integer(1)`, number of inner cross validation folds.
 #' @param nrepcv `integer(1)`, number repeats of inner cross validations.
 #' @param \ldots further arguments passed to [`gs_rusranger()`].
 #' @return `list`, with an element per `nouterfolds` containing the following
 #' subelements:
-#' * model selected `ranger` model.
 #' * indextrain index of the used training items.
 #' * indextest index of the used test items.
-#' * prediction predictions results.
-#' * truth original labels/classes.
 #' * performance resulting performance (AUC).
 #' * selectedparams select hyperparameters.
 #' * gridsearch `data.frame`, results of the grid search.
@@ -80,16 +83,15 @@ gs_rusranger <- function(x, y, searchspace, nfolds = 5, nrepcv = 2, ...) {
 #'     iris[-5], as.numeric(iris$Species == "versicolor"),
 #'     searchspace = searchspace, nouterfolds = 3, ninnerfolds = 3, nrepcv = 1
 #' )
-nrcv_rusranger <- function(x, y, searchspace,
-                           nouterfolds = 5, ninnerfolds = 5, nrepcv = 2,
-                           ...) {
-
+nested_gridsearch <- function(x, y, searchspace, FUN,
+                              nouterfolds = 5, ninnerfolds = 5, nrepcv = 2,
+                              ...) {
     folds <- .bfolds(y, nfolds = nouterfolds)
     xl <- split(x, folds)
     yl <- split(y, folds)
     indices <- split(seq_along(y), folds)
 
-    nrcv <- future.apply::future_lapply(
+    future.apply::future_lapply(
         seq_len(nouterfolds),
         function(i) {
             xtrain <- do.call(rbind, xl[-i])
@@ -97,45 +99,35 @@ nrcv_rusranger <- function(x, y, searchspace,
             ytrain <- do.call(c, yl[-i])
             ytest <- yl[[i]]
 
-            gs <- gs_rusranger(
-                xtrain, ytrain, searchspace,
-                nfolds = ninnerfolds, nrepcv = nrepcv, ...
+            g <- gridsearch(
+                x = xtrain, y = ytrain, searchspace = searchspace,
+                FUN = FUN, nfolds = ninnerfolds, nrepcv = nrepcv, ...
             )
 
-            top <- which.max(gs$Median)
+            top <- which.max(g$Median)
             selparms <-
-                gs[top,
-                   !colnames(gs) %in% c("Min", "Q1", "Median", "Q3", "Max"),
+                g[top,
+                   !colnames(g) %in% c("Min", "Q1", "Median", "Q3", "Max"),
                    drop = FALSE
                 ]
 
-            ## additional call of an already calculated tree, ...
-            ## could be avoided if we would store the results of the trees
-            ## but this would take alot of memory
-            ## this could slightly change the results because of new
-            ## resampling
-            rngr <- do.call(
-                rusranger,
+            r <- do.call(
+                FUN,
                 c(
-                  list(
-                    x = xtrain,
-                    y = ytrain
-                  ), list(...), selparms
+                    list(
+                        xtrain = xtrain, ytrain = ytrain,
+                        xtest = xtest, ytest = ytest,
+                        ...
+                    ), selparms
                 )
             )
-            pred <- as.numeric(predict(rngr, xtest)$predictions[, 2L])
 
             list(
-                model = rngr,
                 indextrain = unlist(indices[-i]),
                 indextest = unlist(indices[i]),
-                prediction = pred,
-                truth = ytest,
-                performance = performance(
-                    prediction(pred, ytest), measure = "auc"
-                )@y.values[[1L]],
+                performance = r,
                 selectedparams = selparms,
-                gridsearch = gs,
+                gridsearch = g,
                 nouterfolds = nouterfolds,
                 ninnerfolds = ninnerfolds,
                 nrepcv = nrepcv
@@ -143,5 +135,4 @@ nrcv_rusranger <- function(x, y, searchspace,
         },
         future.seed = TRUE
     )
-    nrcv
 }

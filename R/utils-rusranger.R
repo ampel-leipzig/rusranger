@@ -42,6 +42,18 @@
     }
 }
 
+#' N minority
+#'
+#' Find number of minority class samples.
+#'
+#' @param y vector of binary class labels
+#' @return `integer(1)`, number of minority class samples
+#' @noRd
+.nmin <- function(y) {
+    tbl <- table(y)
+    as.vector(if (tbl[1] > tbl[2]) tbl[2] else tbl[1])
+}
+
 #' Sample fraction
 #'
 #' Calculate sample fraction for 50:50 selection (two times the minority class)
@@ -50,6 +62,5 @@
 #' @return `double(1)`, sample fraction
 #' @noRd
 .samplefraction <- function(y) {
-    tbl <- table(y)
-    as.vector(2L * if (tbl[1] > tbl[2]) tbl[2] else tbl[1]) / length(y)
+    2L * .nmin(y) / length(y)
 }
