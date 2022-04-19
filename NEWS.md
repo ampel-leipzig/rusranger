@@ -1,5 +1,9 @@
 # rusranger 0.0
 
+## Changes in 0.0.4
+
+- Add `rowMedians` and `colMedians`.
+
 ## Changes in 0.0.3
 
 - Add `rosranger`, `smote`, `cv`, `rcv`, `gridsearch`.
